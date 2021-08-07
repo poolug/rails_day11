@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Grupo: <%= @group.name %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Miembros</th>
+      <th>Fecha Debut</th>
+      <th>Género</th>
+      <th>Conciertos en este mes</th>
+      <th>Último concierto</th>
+      <th>Mayor asistencia</th>
+      <th>Mayor duración</th>
+    </tr>
+
+    <tbody>
+      <tr>
+        <td><%= @group.member %></td>
+        <td><%= @group.debut_date %></td>
+        <td><%= @group.gender %></td>
+
+        <%# Conciertos en mes actual %>
+        <% mes = Time.now.month %>
+        <% x = 0 %>
+        <% @group.concert.each do |concert_d| %>
+          <% if concert_d.date_concert.month == mes%>
+            <% x += 1 %>
+          <% end %>
+        <% end %>
+        <td class="text-center"><%= x %></td>
+
+        <%# Último concierto %>
+        <% last_date = Date.new(0-0-0) %>
+        <% @group.concert.each do |event| %>
+          <% if event.date_concert > last_date %>
+            <% last_date = event.date_concert %>
+          <% end %>
+        <% end %>
+        <td class="text-center"> <%= last_date.strftime("%Y-%B-%A") %></td>
+
+          <%# Asistencia máxima %>
+          <% max_asist = 0 %>
+          <% @group.concert.each do |concert| %>
+            <% if concert.participant > max_asist %>
+              <% max_asist = concert.participant %>
+            <% end %>
+          <% end %>
+        <td class="text-center"><%= max_asist %></td>
+
+          <%# Mayor duración %>
+          <% duracion = 0 %>
+          <% @group.concert.each do |concert| %>
+            <% if concert.duration > duracion %>
+              <%  duracion= concert.duration%>
+            <% end %>
+          <% end %>
+        <td class="text-center"><%= "#{duracion} hrs" %></td>
+
+      </tr>
+    </tbody>
+  </thead>
+</table>
+
+<%= link_to 'Editar', edit_group_path(@group), class: "btn btn-success" %> |
+<%= link_to 'Volver', groups_path, class: "btn btn-primary" %>

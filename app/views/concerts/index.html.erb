@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Conciertos</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Grupo</th>
+      <th>Fecha del Concierto</th>
+      <th>Participantes</th>
+      <th>Duración</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @concerts.each do |concert| %>
+      <tr>
+        <td><%= concert.group %></td>
+        <td><%= concert.date_concert %></td>
+        <td><%= concert.participant %></td>
+        <td><%= "#{concert.duration} Hrs" %></td>
+        <td><%= link_to 'Ver', concert %></td>
+        <td><%= link_to 'Editar', edit_concert_path(concert) %></td>
+        <td><%= link_to 'Eliminar', concert, method: :delete, data: { confirm: "¿Quiere eliminar el concierto de: #{concert.group}?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div>
+  <%= link_to 'Nuevo Concierto', new_concert_path, class: "btn btn-outline-success" %>
+  <%= link_to 'Nuevo Grupo', new_group_path, class: 'btn btn-outline-primary' %>
+  <%= link_to 'Ver Grupos', groups_path, class: "btn btn-outline-info" %>
+</div>

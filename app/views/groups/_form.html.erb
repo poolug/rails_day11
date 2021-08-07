@@ -1,0 +1,38 @@
+<%= form_with(model: group, local: true) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong><%= form.label :name, "Nombre" %></strong>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <strong><%= form.label :member, "Cantidad de integrantes"%></strong>
+    <%= form.number_field :member %>
+  </div>
+
+  <div class="field">
+    <strong><%= form.label :debut_date, "Fecha debut" %></strong>
+    <%= form.date_select :debut_date %>
+  </div>
+
+  <div class="field">
+    <strong><%= form.label :gender, "Género" %></strong>
+    <%= form.select :gender, options_for_select(@genders)%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Crear Grupo", class: "btn btn-outline-success" %> |
+    <%= link_to 'Volver', groups_path, class: "btn btn-outline-primary" %>
+  </div>
+<% end %>

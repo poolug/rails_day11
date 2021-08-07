@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Concierto de <%= "#{@concert.group}" %></h1>
+
+<p>
+  <strong>Fecha del concierto:</strong>
+  <%= @concert.date_concert %>
+</p>
+
+<p>
+  <strong>Participantes:</strong>
+  <%= @concert.participant %>
+</p>
+
+<p>
+  <strong>Duración:</strong>
+  <%= @concert.duration %>
+</p>
+
+<%= link_to 'Editar', edit_concert_path(@concert), class: "btn btn-outline-success" %> |
+<%= link_to 'Volver', concerts_path, class: "btn btn-outline-primary" %>
