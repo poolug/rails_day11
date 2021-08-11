@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :name, "Nombre" %></strong>
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :member, "Cantidad de integrantes"%></strong>
     <%= form.number_field :member %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :debut_date, "Fecha debut" %></strong>
     <%= form.date_select :debut_date %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :gender, "Género" %></strong>
     <%= form.select :gender, options_for_select(@genders)%>
   </div>

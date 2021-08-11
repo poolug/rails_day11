@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :date_concert, "Fecha del concierto" %></strong>
     <%= form.date_select :date_concert %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :participant, "Participantes" %></strong>
     <%= form.number_field :participant %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :duration, "Duración" %></strong>
     <%= form.number_field :duration %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <strong><%= form.label :group_id, "Grupo" %></strong>
     <%= form.select :group_id, options_from_collection_for_select(@groups, :id, :name) %>
   </div>
